@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Custom color variables */
+  --color-primary: #E53E3E;
+  --color-primary-light: #FC8181;
+  --color-primary-dark: #C53030;
+  
+  --color-secondary: #3182CE;
+  --color-secondary-light: #63B3ED;
+  --color-secondary-dark: #2C5282;
+  
+  --color-accent: #38B2AC;
+  --color-accent-light: #4FD1C5;
+  --color-accent-dark: #2C7A7B;
+  
+  --color-success: #48BB78;
+  --color-warning: #ECC94B;
+  --color-error: #F56565;
+  
+  --color-gray-50: #F7FAFC;
+  --color-gray-100: #EDF2F7;
+  --color-gray-200: #E2E8F0;
+  --color-gray-300: #CBD5E0;
+  --color-gray-400: #A0AEC0;
+  --color-gray-500: #718096;
+  --color-gray-600: #4A5568;
+  --color-gray-700: #2D3748;
+  --color-gray-800: #1A202C;
+  --color-gray-900: #171923;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  @apply text-gray-800 bg-gray-50;
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200 flex items-center justify-center gap-2;
+  }
+  
+  .btn-primary {
+    @apply bg-red-600 hover:bg-red-700 text-white;
+  }
+  
+  .btn-secondary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white;
+  }
+  
+  .btn-accent {
+    @apply bg-teal-500 hover:bg-teal-600 text-white;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-red-600 text-red-600 hover:bg-red-50;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-md p-6 transition-all duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all duration-200;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  
+  .badge {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  .badge-secondary {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .badge-danger {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  /* Animation classes */
+  .fade-in {
+    @apply transition-opacity duration-300 ease-in-out;
+  }
+  
+  .slide-up {
+    @apply transition-transform duration-300 ease-in-out transform;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400;
+}

@@ -10,7 +10,9 @@ import {
   CalendarCheck, 
   FileHeart, 
   BarChart3, 
-  Settings 
+  Settings,
+  Info,
+  Award
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -32,6 +34,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
       title: 'Dashboard',
       path: '/dashboard',
       icon: <LayoutDashboard size={20} />,
+      roles: ['admin', 'donor', 'hospital', 'organizer']
+    },
+    {
+      title: 'About',
+      path: '/about',
+      icon: <Info size={20} />,
       roles: ['admin', 'donor', 'hospital', 'organizer']
     },
     {
@@ -75,6 +83,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
       path: '/analytics',
       icon: <BarChart3 size={20} />,
       roles: ['admin', 'hospital', 'organizer']
+    },
+    {
+      title: 'Rewards',
+      path: '/rewards',
+      icon: <Award size={20} />,
+      roles: ['admin', 'donor']
     },
     {
       title: 'Settings',

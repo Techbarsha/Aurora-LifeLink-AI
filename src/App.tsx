@@ -8,11 +8,13 @@ import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import AboutPage from './pages/AboutPage';
 import CancerDetectionPage from './pages/CancerDetectionPage';
 import DonorManagementPage from './pages/DonorManagementPage';
 import CampLocatorPage from './pages/CampLocatorPage';
 import BloodRequestPage from './pages/BloodRequestPage';
 import AppointmentPage from './pages/AppointmentPage';
+import RewardsPage from './pages/RewardsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="about" element={<AboutPage />} />
             <Route path="dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
@@ -53,6 +56,11 @@ function App() {
             <Route path="appointments" element={
               <ProtectedRoute>
                 <AppointmentPage />
+              </ProtectedRoute>
+            } />
+            <Route path="rewards" element={
+              <ProtectedRoute>
+                <RewardsPage />
               </ProtectedRoute>
             } />
             <Route path="*" element={<NotFoundPage />} />

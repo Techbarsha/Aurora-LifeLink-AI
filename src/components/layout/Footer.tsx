@@ -118,7 +118,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-gray-800 mt-8 pt-6">
           <p className="text-center text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Aurora: LifeLink AI.2025 All rights reserved.
+            &copy; {new Date().getFullYear()} Aurora: LifeLink AI.2025 All rights reserved by @Boka Group👨‍💻
           </p>
         </div>
       </div>

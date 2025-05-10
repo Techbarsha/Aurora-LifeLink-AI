@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
@@ -9,6 +8,8 @@ import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import ContactPage from './pages/ContactPage';
 import CancerDetectionPage from './pages/CancerDetectionPage';
 import DonorManagementPage from './pages/DonorManagementPage';
 import CampLocatorPage from './pages/CampLocatorPage';
@@ -28,6 +29,8 @@ function App() {
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="about" element={<AboutPage />} />
+            <Route path="services" element={<ServicesPage />} />
+            <Route path="contact" element={<ContactPage />} />
             <Route path="dashboard" element={
               <ProtectedRoute>
                 <Dashboard />

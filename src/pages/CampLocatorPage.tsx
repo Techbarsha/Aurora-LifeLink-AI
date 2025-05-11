@@ -55,7 +55,7 @@ const CampLocatorPage = () => {
     setLoading(true);
     setError(null);
     try {
-      const radiusMeters = radius * 1000; // Convert km to meters
+      const radiusMeters = radius * 1000;
       const overpassQuery = `[out:json][timeout:30];
         (
           node["amenity"="blood_bank"](around:${radiusMeters},${lat},${lon});
@@ -170,7 +170,7 @@ const CampLocatorPage = () => {
             <div className="flex gap-4">
               <input
                 type="text"
-                placeholder="Enter city or address (e.g., 'Mumbai, India')"
+                placeholder="Enter city or address (e.g., 'Haringhata, India')"
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

@@ -17,7 +17,6 @@ import BloodRequestPage from './pages/BloodRequestPage';
 import AppointmentPage from './pages/AppointmentPage';
 import RewardsPage from './pages/RewardsPage';
 import NotFoundPage from './pages/Settings';
-import ProfileDropdown from './pages/ProfileDropdown';
 
 
 function App() {

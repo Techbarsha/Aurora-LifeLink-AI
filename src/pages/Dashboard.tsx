@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { 
-  BarChart3, 
   Droplets, 
   Users, 
   CalendarCheck, 
-  MapPin, 
-  Activity, 
-  FileHeart, 
-  Bell, 
-  Clock,
-  Plus
+  MapPin,
 } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
@@ -26,24 +21,6 @@ const bloodInventory = [
   { type: 'O-', current: 8, target: 20 },
 ];
 
-const recentRequests = [
-  { id: 'REQ001', patientName: 'Barsha Saha', bloodType: 'O+', hospital: 'City Hospital', urgency: 'High', status: 'Pending' },
-  { id: 'REQ002', patientName: 'Emily Johnson', bloodType: 'AB-', hospital: 'Metro Medical', urgency: 'Medium', status: 'Fulfilled' },
-  { id: 'REQ003', patientName: 'Robert Brown', bloodType: 'B+', hospital: 'Central Clinic', urgency: 'Low', status: 'Fulfilled' },
-  { id: 'REQ004', patientName: 'Sarah Wilson', bloodType: 'A+', hospital: 'City Hospital', urgency: 'High', status: 'Pending' },
-];
-
-const upcomingCamps = [
-  { id: 'CAMP001', name: 'City Blood Drive', location: 'Central Park', date: '2025-06-15', slots: 50, registered: 32 },
-  { id: 'CAMP002', name: 'University Donation Camp', location: 'State University', date: '2025-06-20', slots: 100, registered: 78 },
-  { id: 'CAMP003', name: 'Corporate Blood Drive', location: 'Tech Park', date: '2025-06-25', slots: 80, registered: 45 },
-];
-
-const upcomingAppointments = [
-  { id: 'APT001', center: 'City Blood Bank', date: '2025-06-12', time: '10:00 AM', status: 'Confirmed' },
-  { id: 'APT002', center: 'Central Hospital', date: '2025-06-18', time: '2:30 PM', status: 'Pending' },
-];
-
 const notifications = [
   { id: 1, message: 'Your donation appointment has been confirmed', time: '2 hours ago', read: false },
   { id: 2, message: 'New blood donation camp announced near you', time: '1 day ago', read: true },
@@ -53,11 +30,10 @@ const notifications = [
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
   const [showAllNotifications, setShowAllNotifications] = useState(false);
-
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -69,7 +45,7 @@ const Dashboard: React.FC = () => {
       {/* Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Total Donations */}
-        <div className="card bg-gradient-to-br from-red-50 to-white border border-red-100">
+        <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-600 text-sm font-medium">Total Donations</p>
@@ -80,15 +56,13 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
           <div className="mt-4 text-green-600 text-sm font-medium flex items-center">
-            <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 15l-6-6-6 6" />
-            </svg>
+            <span className="mr-1">↑</span>
             +12% from last month
           </div>
         </div>
 
         {/* Lives Impacted */}
-        <div className="card bg-gradient-to-br from-blue-50 to-white border border-blue-100">
+        <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-600 text-sm font-medium">Lives Impacted</p>
@@ -99,15 +73,13 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
           <div className="mt-4 text-green-600 text-sm font-medium flex items-center">
-            <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 15l-6-6-6 6" />
-            </svg>
+            <span className="mr-1">↑</span>
             +8% from last month
           </div>
         </div>
 
         {/* Appointments */}
-        <div className="card bg-gradient-to-br from-green-50 to-white border border-green-100">
+        <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-600 text-sm font-medium">Upcoming Appointments</p>
@@ -121,7 +93,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Nearby Camps */}
-        <div className="card bg-gradient-to-br from-purple-50 to-white border border-purple-100">
+        <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-600 text-sm font-medium">Nearby Camps</p>
@@ -135,17 +107,21 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Inventory, Requests, and Notifications */}
+      {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Blood Inventory */}
-        <div className="lg:col-span-2 card">
+        {/* Blood Inventory Section */}
+        <div className="lg:col-span-2 p-6 bg-white rounded-xl shadow-sm border border-gray-100">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-lg font-bold text-gray-900">Blood Inventory Status</h2>
-            <Link to="/blood-stock" className="text-sm text-red-600 hover:text-red-700 font-medium">View All</Link>
+            <Link to="/blood-stock" className="text-sm text-red-600 hover:text-red-700 font-medium">
+              View All
+            </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+          {/* Blood Type Progress Bars */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {bloodInventory.map((item) => (
-              <div key={item.type} className="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <div key={item.type} className="bg-gray-50 p-4 rounded-lg">
                 <div className="flex justify-between mb-2">
                   <span className="font-semibold">{item.type}</span>
                   <span className={`text-xs px-2 py-1 rounded-full ${
@@ -173,22 +149,77 @@ const Dashboard: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* Blood Inventory Chart */}
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={bloodInventory} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <XAxis 
+                  dataKey="type" 
+                  stroke="#6b7280" 
+                  fontSize={12}
+                />
+                <YAxis 
+                  stroke="#6b7280" 
+                  fontSize={12}
+                />
+                <Tooltip 
+                  contentStyle={{
+                    backgroundColor: '#fff',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '6px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}
+                />
+                <Legend 
+                  wrapperStyle={{ paddingTop: '10px' }}
+                  formatter={(value) => (
+                    <span className="text-gray-600 text-sm">{value}</span>
+                  )}
+                />
+                <Bar 
+                  dataKey="current" 
+                  name="Current Units" 
+                  fill="#ef4444"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar 
+                  dataKey="target" 
+                  name="Target Units" 
+                  fill="#94a3b8"
+                  radius={[4, 4, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
 
-        {/* Notifications */}
-        <div className="card">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Notifications</h2>
-          <ul className="space-y-3 max-h-60 overflow-auto">
+        {/* Notifications Section */}
+        <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-bold text-gray-900">Notifications</h2>
+            <span className="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">
+              {unreadCount} new
+            </span>
+          </div>
+          
+          <ul className="space-y-3 max-h-96 overflow-auto">
             {(showAllNotifications ? notifications : notifications.slice(0, 3)).map(n => (
-              <li key={n.id} className={`p-3 rounded-md ${n.read ? 'bg-white' : 'bg-yellow-50'}`}>
-                <p className="text-sm text-gray-800">{n.message}</p>
-                <span className="text-xs text-gray-500">{n.time}</span>
+              <li 
+                key={n.id} 
+                className={`p-3 rounded-lg transition-colors ${
+                  n.read ? 'bg-gray-50' : 'bg-yellow-50 border border-yellow-200'
+                }`}
+              >
+                <p className="text-sm text-gray-800 font-medium">{n.message}</p>
+                <span className="text-xs text-gray-500 mt-1 block">{n.time}</span>
               </li>
             ))}
           </ul>
+          
           <button
-            className="text-blue-600 hover:underline text-sm mt-2"
-            onClick={() => setShowAllNotifications(prev => !prev)}
+            className="w-full mt-4 text-center text-blue-600 hover:text-blue-700 text-sm font-medium"
+            onClick={() => setShowAllNotifications(!showAllNotifications)}
           >
             {showAllNotifications ? 'Show Less' : 'Show All'}
           </button>

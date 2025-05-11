@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --color-primary: #E53E3E;
   --color-primary-light: #FC8181;

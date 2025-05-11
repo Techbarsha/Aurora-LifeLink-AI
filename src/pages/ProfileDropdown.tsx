@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom'; // If you're using React Router
-import './ProfileDropdown.css'; // Create this CSS file
+import { useNavigate } from 'react-router-dom';
+import './ProfileDropdown.css';
 
 interface ProfileDropdownProps {
   isOpen: boolean;
   onClose: () => void;
-  // Add props for user data if needed, e.g., userData: UserType;
 }
 
 interface UserType {
@@ -13,11 +12,10 @@ interface UserType {
   email: string;
   donationCount: number;
   bloodType: string;
-  // Add other relevant user data types
 }
 
 const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ isOpen, onClose }) => {
-  const navigate = useNavigate(); // If using React Router
+  const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
   // Placeholder user data
   const userData: UserType = {

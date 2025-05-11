@@ -7,7 +7,6 @@ const Settings: React.FC = () => {
 
   const handleSave = () => {
     alert('Settings saved!');
-    // Ideally, send this data to backend or localStorage
   };
 
   return (

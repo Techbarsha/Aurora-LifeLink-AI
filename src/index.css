@@ -3,11 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Fonts */
-
-
 :root {
-  /* Custom color variables */
   --color-primary: #E53E3E;
   --color-primary-light: #FC8181;
   --color-primary-dark: #C53030;
@@ -122,7 +118,6 @@ body {
   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }

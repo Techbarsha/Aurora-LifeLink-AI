@@ -16,7 +16,8 @@ import CampLocatorPage from './pages/CampLocatorPage';
 import BloodRequestPage from './pages/BloodRequestPage';
 import AppointmentPage from './pages/AppointmentPage';
 import RewardsPage from './pages/RewardsPage';
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from './pages/Settings';
+
 
 function App() {
   return (

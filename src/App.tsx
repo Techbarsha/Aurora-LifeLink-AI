@@ -17,6 +17,7 @@ import BloodRequestPage from './pages/BloodRequestPage';
 import AppointmentPage from './pages/AppointmentPage';
 import RewardsPage from './pages/RewardsPage';
 import NotFoundPage from './pages/Settings';
+import Settings from './pages/Settings';
 
 
 function App() {
@@ -67,7 +68,7 @@ function App() {
                 <RewardsPage />
               </ProtectedRoute>
             } />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<Settings />} />
           </Route>
         </Routes>
       </Router>

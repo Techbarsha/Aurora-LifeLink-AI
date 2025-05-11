@@ -64,16 +64,6 @@ const Dashboard: React.FC = () => {
           <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-600">Welcome back, {user?.name}!</p>
         </div>
-        <div className="relative">
-          <button className="relative p-2 rounded-full hover:bg-gray-100">
-            <Bell size={24} />
-            {unreadCount > 0 && (
-              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                {unreadCount}
-              </span>
-            )}
-          </button>
-        </div>
       </div>
 
       {/* Stat Cards */}

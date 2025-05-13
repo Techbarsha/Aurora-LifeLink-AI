@@ -46,8 +46,6 @@ const RewardsPage: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // ... (rest of the code remains the same as previous version)
-
   return (
     <div className="container mx-auto px-4 py-8">
       {/* ... (other sections remain unchanged) */}

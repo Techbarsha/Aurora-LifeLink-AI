@@ -87,7 +87,33 @@ const RewardsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* ... (rest of the code remains the same) */}
+     {/* How to Earn Points */}
+      <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Earn Points</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-4">
+              <Gift className="w-5 h-5 text-red-600" />
+            </div>
+            <h3 className="font-bold text-gray-900 mb-2">Blood Donation</h3>
+            <p className="text-gray-600">100 points per donation</p>
+          </div>
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-4">
+              <Users className="w-5 h-5 text-red-600" />
+            </div>
+            <h3 className="font-bold text-gray-900 mb-2">Referrals</h3>
+            <p className="text-gray-600">50 points per successful referral</p>
+          </div>
+          <div className="p-4 border border-gray-200 rounded-lg">
+            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-4">
+              <Target className="w-5 h-5 text-red-600" />
+            </div>
+            <h3 className="font-bold text-gray-900 mb-2">Camp Participation</h3>
+            <p className="text-gray-600">75 points per camp attendance</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

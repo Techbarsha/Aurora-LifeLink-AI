@@ -7,12 +7,12 @@ const RewardsPage: React.FC = () => {
   
   // Initial static data for demonstration
   const initialLeaderboard = [
-    { name: 'John Doe', points: 1200, donations: 12 },
+    { name: 'Barsha Saha', points: 1200, donations: 12 },
     { name: 'Jane Smith', points: 1100, donations: 11 },
     { name: 'Robert Johnson', points: 950, donations: 9 },
     { name: 'Emily Brown', points: 900, donations: 9 },
     { name: 'Michael Wilson', points: 850, donations: 8 },
-    { name: 'Barsha Saha', points: 800, donations: 8 }, // Added Barsha Saha
+    { name: 'John Doe', points: 800, donations: 8 }, // Added Barsha Saha
     { name: 'Alex Turner', points: 780, donations: 7 },
     { name: 'Sarah Williams', points: 750, donations: 7 },
     { name: 'Raj Patel', points: 720, donations: 6 },

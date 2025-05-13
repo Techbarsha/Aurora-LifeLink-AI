@@ -19,7 +19,6 @@ import RewardsPage from './pages/RewardsPage';
 import NotFoundPage from './pages/Settings';
 import Settings from './pages/Settings';
 
-
 function App() {
   return (
     <AuthProvider>
@@ -68,7 +67,12 @@ function App() {
                 <RewardsPage />
               </ProtectedRoute>
             } />
-            <Route path="*" element={<Settings />} />
+            <Route path="settings" element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            } />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </Router>

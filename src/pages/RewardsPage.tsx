@@ -5,18 +5,20 @@ const RewardsPage: React.FC = () => {
   const userPoints = 750;
   const nextTier = 1000;
   
-  // Initial static data for demonstration
+  // Initial leaderboard data with expanded entries
   const initialLeaderboard = [
-    { name: 'Barsha Saha', points: 1200, donations: 12 },
+    { name: 'John Doe', points: 1200, donations: 12 },
     { name: 'Jane Smith', points: 1100, donations: 11 },
     { name: 'Robert Johnson', points: 950, donations: 9 },
     { name: 'Emily Brown', points: 900, donations: 9 },
     { name: 'Michael Wilson', points: 850, donations: 8 },
-    { name: 'John Doe', points: 800, donations: 8 }, // Added Barsha Saha
-    { name: 'Alex Turner', points: 780, donations: 7 },
-    { name: 'Sarah Williams', points: 750, donations: 7 },
-    { name: 'Raj Patel', points: 720, donations: 6 },
-    { name: 'Linda Chen', points: 700, donations: 6 },
+    { name: 'Barsha Saha', points: 820, donations: 8 },
+    { name: 'Arjun Patel', points: 790, donations: 7 },
+    { name: 'Sofia Rodriguez', points: 760, donations: 7 },
+    { name: 'Wei Chen', points: 730, donations: 6 },
+    { name: 'Amina Diop', points: 700, donations: 6 },
+    { name: 'Hiroshi Tanaka', points: 680, donations: 5 },
+    { name: 'Anika Kapoor', points: 650, donations: 5 },
   ];
 
   const [leaderboard, setLeaderboard] = useState(initialLeaderboard);
@@ -26,29 +28,117 @@ const RewardsPage: React.FC = () => {
   useEffect(() => {
     const updateLeaderboard = () => {
       setLeaderboard(prev => {
-        // Generate new data with random increments
         const updated = prev.map(donor => ({
           ...donor,
           points: donor.points + Math.floor(Math.random() * 50) + 10,
           donations: donor.donations + (Math.random() > 0.7 ? 1 : 0),
         }));
         
-        // Sort by points descending
-        return updated.sort((a, b) => b.points - a.points);
+        // Sort by points descending and keep top 12
+        return updated.sort((a, b) => b.points - a.points).slice(0, 12);
       });
       setLastUpdated(new Date());
     };
 
-    // Update immediately on mount and then every 15 minutes
+    // Initial update and set interval
     updateLeaderboard();
-    const interval = setInterval(updateLeaderboard, 900000); // 15 minutes in milliseconds
+    const interval = setInterval(updateLeaderboard, 900000);
 
     return () => clearInterval(interval);
   }, []);
 
+  const rewards = [
+    {
+      id: 1,
+      title: 'First Time Donor',
+      description: 'Complete your first blood donation',
+      points: 100,
+      icon: <Gift className="w-6 h-6 text-red-600" />,
+      achieved: true,
+    },
+    {
+      id: 2,
+      title: 'Regular Donor',
+      description: 'Donate blood 3 times in 6 months',
+      points: 300,
+      icon: <Trophy className="w-6 h-6 text-red-600" />,
+      achieved: true,
+    },
+    {
+      id: 3,
+      title: 'Life Saver',
+      description: 'Help save 10 lives through donations',
+      points: 500,
+      icon: <Award className="w-6 h-6 text-red-600" />,
+      achieved: false,
+    },
+    {
+      id: 4,
+      title: 'Community Champion',
+      description: 'Refer 5 new donors',
+      points: 250,
+      icon: <Users className="w-6 h-6 text-red-600" />,
+      achieved: true,
+    },
+  ];
+
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* ... (other sections remain unchanged) */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Rewards & Recognition</h1>
+        <p className="text-gray-600">Earn points and recognition for your contributions to the community.</p>
+      </div>
+
+      {/* Points Overview */}
+      <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-6 text-white mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Your Points: {userPoints}</h2>
+            <p className="text-red-100">Next tier at {nextTier} points</p>
+          </div>
+          <div className="mt-4 md:mt-0">
+            <div className="w-64 h-3 bg-red-900 rounded-full">
+              <div 
+                className="h-3 bg-white rounded-full"
+                style={{ width: `${(userPoints / nextTier) * 100}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-red-100 mt-2 text-center">
+              {nextTier - userPoints} points to next tier
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Achievements Grid */}
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Achievements</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {rewards.map((reward) => (
+            <div
+              key={reward.id}
+              className={`p-6 rounded-lg border-2 ${
+                reward.achieved
+                  ? 'border-red-500 bg-red-50'
+                  : 'border-gray-200 bg-white'
+              }`}
+            >
+              <div className="flex items-center mb-4">
+                {reward.icon}
+                <span className="ml-2 font-semibold">{reward.points} pts</span>
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">{reward.title}</h3>
+              <p className="text-sm text-gray-600">{reward.description}</p>
+              {reward.achieved && (
+                <div className="mt-4 flex items-center text-green-600">
+                  <Star className="w-4 h-4 mr-1" />
+                  <span className="text-sm font-medium">Achieved</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Live Leaderboard */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-12">
@@ -87,8 +177,8 @@ const RewardsPage: React.FC = () => {
         </div>
       </div>
 
-     {/* How to Earn Points */}
-      <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+      {/* How to Earn Points */}
+      <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Earn Points</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="p-4 border border-gray-200 rounded-lg">
